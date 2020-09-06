@@ -7,22 +7,14 @@ import { CATEGORIES } from '../data/dummy-data';
 const CategoriesScreen = (props) => {
 
 
-    const renderGridItem = dataItem => {
-        return (
-            <TouchableOpacity
-                onPress={() => {
-                    props.navigation.navigate('CategoryMeals', {
-                        'categoryId': dataItem.item.id
-                    })
-                }}
-                style={styles.gridItem}>
-                <View  >
-                    <Text>{dataItem.item.title}</Text>
-                </View>
-            </TouchableOpacity>
-
-        );
-    }
+    const renderGridItem = dataItem => <CategoryGridTile
+        title={dataItem.item.title}
+        color={dataItem.item.color}
+        onSelect={() => {
+            props.navigation.navigate('CategoryMeals', {
+                'categoryId': dataItem.item.id
+            })
+        }} />
 
 
     return (
@@ -40,12 +32,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    gridItem: {
-        flex: 1,
-        margin: 15,
-        height: 150
-    },
+    }
 })
 
 export default CategoriesScreen; 
