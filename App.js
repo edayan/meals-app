@@ -1,9 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
+import { AppLoading } from 'expo';
+import * as Font from 'expo-font';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import * as Font from 'expo-font'
-import { AppLoading } from 'expo'
-import MealsNavigator from './navigation/MealsNavigator'
+import { enableScreens } from 'react-native-screens';
+import MealsNavigator from './navigation/MealsNavigator';
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -12,6 +11,8 @@ const fetchFonts = () => {
   })
 }
 const App = () => {
+
+  enableScreens();// just for performance
 
   const [fontLoaded, setFondLoaded] = useState(false);
 
