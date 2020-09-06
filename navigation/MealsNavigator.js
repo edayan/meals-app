@@ -1,14 +1,34 @@
+import { Platform } from 'react-native';
 import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack'
+import { createStackNavigator } from 'react-navigation-stack';
+import Colors from '../constants/colors';
+import CategoriesScreen from '../screens/CategoriesScreen';
+import CategoryMealsScreen from '../screens/CategoryMealsScreen';
+import MealsDetailsScreen from '../screens/MealDetailScreen';
 
-import CategoriesScreen from '../screens/CategoriesScreen'
-import CategoryMealsScreen from '../screens/CategoryMealsScreen'
-import MealsDetailsScreen from '../screens/MealDetailScreen'
+
+
 
 
 const MealsNavigator = createStackNavigator({
-    Categories: CategoriesScreen,
-    CategoryMeals: CategoryMealsScreen,
+    Categories: {
+        screen: CategoriesScreen,
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
+            },
+            headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
+        }
+    },
+    CategoryMeals: {
+        screen: CategoryMealsScreen,
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
+            },
+            headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
+        }
+    },
     MealDetail: MealsDetailsScreen
 })
 
