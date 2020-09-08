@@ -5,7 +5,7 @@ const CategoryGridTile = (props) => {
 
     let TouchableComponent = TouchableOpacity;
     if (Platform.OS === 'android' && Platform.Version >= 22) {
-        TouchableComponent = TouchableComponent
+        TouchableComponent = TouchableNativeFeedback
     }
     return (
         <View style={styles.gridItem}>
