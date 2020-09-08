@@ -9,7 +9,11 @@ const CategoryMealsScreen = (props) => {
     const displayedMeals = MEALS.filter(meal => meal.categoryIds.indexOf(categoryId) >= 0);
 
     const renderMealItem = itemData => <MealItem
-        onSelectMeal={() => { }}
+        onSelectMeal={() => {
+            props.navigation.navigate('MealDetail', {
+                mealId: itemData.item.id
+            })
+        }}
         image={itemData.item.imageUrl}
         title={itemData.item.title}
         duration={itemData.item.duration}
