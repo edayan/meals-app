@@ -7,7 +7,8 @@ const MealList = (props) => {
     const renderMealItem = itemData => <MealItem
         onSelectMeal={() => {
             props.navigation.navigate('MealDetail', {
-                mealId: itemData.item.id
+                mealId: itemData.item.id,
+                mealTitle: itemData.item.title
             })
         }}
         image={itemData.item.imageUrl}
