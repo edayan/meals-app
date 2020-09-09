@@ -4,12 +4,16 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import { createDrawerNavigator } from 'react-navigation-drawer';
+
+
 import { Ionicons } from '@expo/vector-icons'
 import Colors from '../constants/colors';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealsDetailsScreen from '../screens/MealDetailScreen';
 import FavouriteScreen from '../screens/FavouritesScreen'
+import FilterScreen from '../screens/FilterScreen'
 
 const defaultStackNavigatorOptions = {
     // initialRouteName: 'MealDetail', // incase want to load MealDetail first.
@@ -62,7 +66,7 @@ const tabScreenConfig = {
     }
 
 }
-const MealsFavNavigator = Platform.OS === 'android'
+const MealsFavTabNavigator = Platform.OS === 'android'
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
         activeTintColor: Colors.accentColor,
         shifting: true
@@ -73,5 +77,13 @@ const MealsFavNavigator = Platform.OS === 'android'
         }
     });
 
+const FiltersNavigator = createStackNavigator({
+    Filter: FilterScreen
+})
 
-export default createAppContainer(MealsFavNavigator);
+const MainNavigator = createDrawerNavigator({
+    MealsFavs: MealsFavTabNavigator,
+    Filters: FiltersNavigator
+});
+
+export default createAppContainer(MainNavigator);
