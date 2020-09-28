@@ -3,6 +3,9 @@ import { Platform, StyleSheet, Switch, Text, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/colors';
+import {useDispatch} from 'react-redux'
+
+import {setFilters} from '../store/actions/meals'
 
 const FilterSwitch = props => {
     return (
@@ -24,6 +27,8 @@ const FilterScreen = (props) => {
     const [isVegan, setIsVegan] = useState(false)
     const [isVegetarian, setIsVegetarian] = useState(false)
 
+    const dispatch = useDispatch();
+
     const saveFilters = useCallback(() => {
         const appliedFilters = {
             glutenFree: isGlutenFree,
@@ -31,8 +36,9 @@ const FilterScreen = (props) => {
             vegan: isVegan,
             vegetarian: isVegetarian
         }
-        console.log('appliedFilters', appliedFilters)
-    }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian])
+        console.log('appliedFilters', appliedFilters);
+        dispatch(setFilters(appliedFilters));
+    }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch])
 
     useEffect(() => {
         // setting params to navigation data, so that props/states of component can be accessed from navigation options
